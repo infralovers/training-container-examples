@@ -1,0 +1,9 @@
+---
+
+- name: Test
+  shell: kubectl version | base64 | tr -d '\n'
+  register: version
+
+- name: Install weave network
+  command: kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version={{ version.stdout }}"
+        

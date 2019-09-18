@@ -1,0 +1,3 @@
+---
+- name: Spin up Kubernetes flask_app deployment
+  command: kubectl run flask-app --image=commandemy/your-name_flask_app ## edit your-name

@@ -1,0 +1,12 @@
+---
+- name: Copy files
+  copy:
+    src: /home/ec2-user/environment/ansible-kubernetes/k8s_flask/
+    dest: /home/ubuntu/
+    owner: ubuntu
+    group: ubuntu
+    mode: 0644
+    
+- name: Build Docker Image
+  command: docker build  --tag flask_app:latest .
+ 

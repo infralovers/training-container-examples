@@ -1,0 +1,27 @@
+- name: Bootstrap Tasks
+  hosts: 
+    - k8s-master
+    - k8s-nodes
+  gather_facts: False
+  roles:
+    - common
+
+- name: Install Kubernetes master
+  hosts: k8s-master
+  become: yes
+  become_method: sudo
+  roles:
+    - docker
+    - kubeadm
+    - master
+    - weave
+
+- name: Install nodes
+  hosts: k8s-nodes
+  become: yes
+  become_method: sudo
+  roles:
+    - docker
+    - kubeadm
+    - worker
+    

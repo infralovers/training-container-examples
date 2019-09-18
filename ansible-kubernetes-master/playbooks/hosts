@@ -1,0 +1,12 @@
+[k8s-master]
+server1 ansible_host=host-1-01.commandemy.training
+
+[k8s-client:children]
+k8s-master
+
+[k8s-nodes]
+server2 ansible_host=host-1-02.commandemy.training
+server3 ansible_host=host-1-03.commandemy.training
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
