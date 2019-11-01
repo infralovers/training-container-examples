@@ -19,8 +19,8 @@ services:
     image: containous/whoami
     labels:
       - "traefik.http.routers.whoami.rule=Host(`host-git-01.commandemy.training`)"
-  whoami:
+  flask:
     # A container that exposes an API to show its IP address
     image: commandemy/flask
     labels:
-      - "traefik.http.routers.whoami.rule=Host(`server-git-01.commandemy.training`)"
+      - "traefik.http.routers.flask.rule=Host(`server-git-01.commandemy.training`)"
