@@ -1,20 +1,59 @@
-version: '3'
+version: "3.3"
+
 services:
-  mongo:
-    image: mongo:3.2
-    volumes:
-      - mongo-data:/data/db
-    expose:
-      - "27017"
-  app:
-    image: message-app:v0.1
-    ports:
-      - "8000:80"
-    links:
-      - mongo
+
+  api:
+    image: commandemy/12-factor-app:v0.1
+    env_file: docker-compose.env
+    environment:
+      SERVICES: api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.flask.rule=Host(`server-git-01.commandemy.training`)"
+    networks:
+      - internal
+  
+  products:
+    image: commandemy/12-factor-app:v0.1
+    env_file: docker-compose.env
+    environment:
+      SERVICES: products
     depends_on:
       - mongo
-    environment:
-      - MONGO_URL=mongodb://mongo/messageApp
+    networks:
+      - internal
+
+  nats:
+    image: 'nats:2.1'
+    networks:
+      - internal
+
+  mongo:
+    image: mongo:4
+    volumes:
+      - data:/data/db
+    networks:
+      - internal
+
+  traefik:
+    image: traefik:v2.1
+    command:
+      - "--api.insecure=true" # Don't do that in production!
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - internal
+      - default
+
+networks:
+  internal:
+
 volumes:
-  mongo-data:
+  data:
