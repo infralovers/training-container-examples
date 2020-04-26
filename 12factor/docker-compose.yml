@@ -9,7 +9,7 @@ services:
       SERVICES: api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.flask.rule=Host(`server-git-01.commandemy.training`)"
+      - "traefik.http.routers.12factor.rule=Host(`server-git-01.commandemy.training`)"
     networks:
       - internal
   
