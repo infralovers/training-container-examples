@@ -9,7 +9,7 @@ services:
       SERVICES: api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.12factor.rule=Host(`server.cno-user-XX-i-01.commandemy.training`)"
+      - "traefik.http.routers.12factor.rule=Host(`server.cno-user-XX-i-02.commandemy.training`)"
     networks:
       - internal
   
