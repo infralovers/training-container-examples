@@ -18,11 +18,11 @@ services:
     # A container that exposes an API to show its IP address
     image: containous/whoami
     labels:
-      - "traefik.http.routers.whoami.rule=Host(`host.aasm-user-01-i-02.fitting-lemming.commandemy.training`)"
+      - "traefik.http.routers.whoami.rule=Host(`host.<ENV-NAME>-user-<ENV-USER-ID>-i-02.<ENV-ANIMAL>.commandemy.training`)"
       - "traefik.http.middlewares.whoami-basicauth.basicauth.users=coder:$$2y$$05$$MJwyPJgYDe4uNRpFZZ74c.1MuwagBU4jSV44weFRf.PzpQNIPYyAK"
       - "traefik.http.routers.whoami.middlewares=whoami-basicauth"
   flask:
     # A container that exposes an API to show its IP address
     image: commandemy/flask
     labels:
-      - "traefik.http.routers.flask.rule=Host(`server.aasm-user-01-i-02.fitting-lemming.commandemy.training`)"
+      - "traefik.http.routers.flask.rule=Host(`server.<ENV-NAME>-user-<ENV-USER-ID>-i-02.<ENV-ANIMAL>.commandemy.training`)"
