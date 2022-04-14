@@ -18,9 +18,9 @@ services:
     # A container that exposes an API to show its IP address
     image: containous/whoami
     labels:
-      - "traefik.http.routers.whoami.rule=Host(`host.<ENV-NAME>-user-<ENV-USER-ID>-i-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.whoami.rule=Host(`host.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
   flask:
     # A container that exposes an API to show its IP address
     image: commandemy/flask
     labels:
-      - "traefik.http.routers.flask.rule=Host(`server.<ENV-NAME>-user-<ENV-USER-ID>-i-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.flask.rule=Host(`server.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
