@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  reverse-proxy:
-    # The official v2.1 Traefik docker image
-    image: traefik:v2.1
+  traefik:
+    # The official v2.9 Traefik docker image
+    image: traefik:v2.9
     # Enables the web UI and tells Traefik to listen to docker
     command: --api.insecure=true --providers.docker
     ports:
@@ -18,9 +18,9 @@ services:
     # A container that exposes an API to show its IP address
     image: containous/whoami
     labels:
-      - "traefik.http.routers.whoami.rule=Host(`host.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
   flask:
     # A container that exposes an API to show its IP address
-    image: commandemy/flask
+    image: ghcr.io/infralovers/training-flask-app:v1
     labels:
-      - "traefik.http.routers.flask.rule=Host(`server.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.flask.rule=Host(`flask.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"

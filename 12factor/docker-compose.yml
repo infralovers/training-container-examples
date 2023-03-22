@@ -9,7 +9,7 @@ services:
       SERVICES: api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.12factor.rule=Host(`server.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.12factor.rule=Host(`12factor.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
     networks:
       - internal
 
@@ -36,7 +36,7 @@ services:
       - internal
 
   traefik:
-    image: traefik:v2.1
+    image: traefik:v2.9
     command:
       - "--api.insecure=true" # Don't do that in production!
       - "--providers.docker=true"
