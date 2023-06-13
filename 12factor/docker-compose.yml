@@ -9,7 +9,7 @@ services:
       SERVICES: api
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.12factor.rule=Host(`12factor.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.commandemy.training`)"
+      - "traefik.http.routers.12factor.rule=Host(`12factor.<ENV-NAME>-user-<ENV-USER-ID>-02.<ENV-ANIMAL>.<ENV-DOMAIN>`)"
     networks:
       - internal
 
